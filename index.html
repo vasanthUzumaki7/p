@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="project 2.css">
+
+
+
+
+</head>
+<body style="background-color: black;">
+    <div class="snowflakes"></div>
+
+    <script>
+        function createSnowflake() {
+  const snowflake = document.createElement("div");
+  snowflake.className = "snowflake";
+  document.querySelector(".snowflakes").appendChild(snowflake);
+
+  const size = Math.random() * 3 + 2 + "px";
+  snowflake.style.width = size;
+  snowflake.style.height = size;
+
+  snowflake.style.left = Math.random() * window.innerWidth + "px";
+  snowflake.style.animationDuration = Math.random() * 3 + 2 + "s";
+  snowflake.style.opacity = Math.random();
+
+  setTimeout(() => {
+    snowflake.remove();
+  }, 5000);
+}
+
+function createSnowflakes() {
+  setInterval(createSnowflake, 100);
+}
+
+createSnowflakes();
+
+    </script>
+
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top " >
+        <div class="container-fluid"  style="padding-top: 10px;">
+
+            <!-- navbar togler hide -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="#magics"><img src="images\harry-potter-logo-32531.png" alt="" width="200px" height="60px"></a>
+         
+         
+         <!-- togler view -->
+         
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Magic</a>
+              </li>
+             <!-- dropdown -->
+              <li class="nav-item dropdown">  
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">House</a>
+                <ul class="dropdown-menu" >
+                  <li><a  class="dropdown-item" href="#1">Gryffindor</a></li>
+                  <li><a class="dropdown-item" href="#2">Slytherin</a></li>
+                  <li><a class="dropdown-item" href="#3">Rawenclaw</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#4">Hufflepuff</a></li>
+                </ul>
+              </li>
+              <!-- nav item -->
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#wand">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#contactus">Contact us</a>
+              </li>
+              <!-- search bar -->
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Find your Spell" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Tadaa!</button>
+            </form>
+
+<!-- wishlist -->
+            <li class="nav-item p-2 list-group"  >
+              <p id="wishcounts" style="position:absolute;color:white;font-size: 20px;font-weight: bold;text-shadow: 2px 2px 2px black;"></p>
+                <a class="navbar-brand "style="padding-left: 5px;" data-bs-toggle="offcanvas" href="#offcanvaswish" role="button" aria-controls="offcanvaswish">
+                    <img src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" width="30" height="30">
+                  </a>
+                  <div style="background:  #ffffff;" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvaswish" aria-labelledby="offcanvasExamplewish">
+                    <div class="offcanvas-header">
+                      <h5 class="offcanvas-title" id="offcanvasExamplewish">Wishlist</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                      <div id="carts">
+                        <ul id="carts-items">
+                           <h2>Wishlist</h2>
+
+                           <div id="wishlist">
+                          <!-- Wishlist items will be added here dynamically -->
+                           </div>
+
+                           <p>Total Price: $<span id="total-price">0.00</span></p>
+
+                         <button id="clear-btn" onclick="clearWishlist()">Clear Wishlist</button>
+                        </ul>
+                        
+                    </div>
+
+                      </div>
+                    </div>
+              </li>
+             
+
+<!-- cart -->
+              <li class="nav-item p-2 list-group">
+                <p id="count" style="position:absolute;color:white;font-size: 20px;font-weight: bold;text-shadow: 2px 2px 2px black;"></p>
+              <a class="navbar-brand" data-bs-toggle="offcanvas" href="#offcanvascart" role="button" aria-controls="offcanvascart">
+                <img style="border-radius: 50%; margin-left: 10px; " src="https://w7.pngwing.com/pngs/353/274/png-transparent-magician-hat-witch-on-a-broomstick-top-hat-hatpin-magic-thumbnail.png" alt="" width="30" height="30" >
+              </a>
+              <div style="background: #ffffcc;" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvascart" aria-labelledby="offcanvasExamplecart">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="offcanvasExamplecart">Product Cart</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <div id="cart">
+                    <ul id="cart-items">
+
+
+                    </ul>
+                    <p>Total Price: $<span id="total-price">0.00</span></p>
+                </div>
+                <button type="button" onclick="clearCart()" class="btn btn-danger">Clear</button>
+                <button class="btn btn-success" onclick="proceed()">Proceed</button>
+
+
+                  
+                </div>
+                </div>
+         </li>
+
+          </div>
+        </div>
+      </nav>
+
+
+
+      <div class="content"></div>
+      <div class="sec-end">
+        <div>
+        <div class="sec-left">
+<h1>Hogwarts The Spell World</h1>
+<p> i think you are Eagerly waiting see our Spells Right Here  we go... </p>
+<div style="text-align:right ;"><cite>-Hagrid</cite></div>
+</div>
+
+
+
+<div class="head-icon" style="padding: 20px;">
+<img class="im1" src="images\pngegg.png" alt="" width="200px" height="200px">
+<img id="im2" src="images\pngegg%20(3).png" alt="" width="200px" height="200px">
+<img id="im3" src="images\pngegg%20(2).png" alt="" width="200px" height="200px">
+<img id="im4" src="images\pngegg%20(1).png" alt="" width="200px" height="200px">
+</div></div>
+
+    
+        <div class="second" >
+            <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
+                <div class="carousel-inner carousel-fade"  style="z-index: -1;">
+                  <div class="carousel-item active" >
+                    <img src="https://wallpapers.com/images/hd/harry-potter-goblet-of-fire-m4gs9ihnexj4oauc.webp" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://wallpapers.com/images/high/formal-harry-potter-and-the-deathly-hollows-peh10td71x0w8ehm.webp" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://wallpapers.com/images/hd/harry-potter-7-hermione-granger-805vqbetpuhq68wq.webp" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://wallpapers.com/images/high/hp-hogsmeade-hogwarts-aesthetic-street-sign-7u30sct6oni5xc74.webp" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://wallpapers.com/images/high/harry-potter-glowing-stag-patronus-s1oebg9fkdiwur6p.webp" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://wallpapers.com/images/high/harry-potter-dumbledore-s-army-6v98eidnawa0wu2f.webp" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button  class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="det">
+          
+            <img src="images\NicePng_fang-png_8195203.png" alt="">
+          
+          <div class="de">
+            <h1 >First year students</h1>
+            <p>Should buy Some magic Things i'll Show Ollivander's Shop You can buy ....... </p>
+            <p>Celebrate the festive season with 12 days of magical deals on the Harry Potter Shop, each one available for 24 hours only. All aboard for today's deal - enjoy 20% off the Hogwarts Express range!</p>
+            <button style="width: 100px;border-radius: 10px;">Shop Now</button>
+        </div>
+            
+        </div>
+<!-- ollivander shop -->
+
+       <div class="magic-shop">
+<!-- mhead -->
+
+       <div class="mhead">
+        <h1>Ollivander Magic Shop</h1>
+        <p>We Give Speacial Discount For First Years....</p>
+        <cite>-Ollivander</cite>
+      </div>
+<!-- card -->
+      <div class="carding">
+      <div class="card ">
+
+        <div class="card-header">
+          Featured
+        </div>
+
+        <div class="card-body">
+          <h2 class="card-title">Special Arkamada Wand</h2>
+          <p class="card-text">Dragon heartstring was a material from a dragon that could be used in the core of a wand.[1][2] It is unknown from which varieties of dragon the heartstrings were collected, and what effect this difference made on the attributes of the wand, if any. Since the heart was a vital organ in all creatures, it can be assumed that the material was taken after the dragon had either died of natural causes or been killed. It is also unknown what quantity of heartstrings could be collected from each dragon's heart.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+
+        <div class="card-footer text-body-secondary">
+          2 days ago
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div id="wand" style="margin-top: 100px; color: white; padding-left: 20px; background: black;"><h1>Wands:</h1></div>
+
+    <div class="product">
+      
+      
+
+      
+      <div class="card1" >
+        <img  src="https://fictionhorizon.com/wp-content/uploads/2022/03/Elder-wand.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+        <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+          <h5 class="cardt" >Elder Wand</h5>
+          <small class="cp">Thestral tail hair. </small>
+          <p>$ 10000</p>
+          <img onclick="wish(product1)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+         <button class="pro-but" onclick="addtocart(1)">
+            Add cart</button>
+        </div>
+    </div>
+
+    <div class="card1" >
+      <img src="https://fictionhorizon.com/wp-content/uploads/2022/03/Bellatrix-Lestranges-wand.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+      <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+        <h5 class="cardt" >Bellatrix Lestranges wand</h5>
+        <small class="cp">Dragon heartstring. </small>
+        <p>$ 100</p>
+        <img onclick="wish(product2)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+       <button class="pro-but" onclick="addtocart(2)">
+       Add cart</button>
+      </div>
+    </div>
+
+    <div class="card1" >
+      <img src="https://fictionhorizon.com/wp-content/uploads/2022/03/Sir-Cadogans-wand.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+      <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+        <h5 class="cardt" >Sir Cadogans wand</h5>
+        <small class="cp">blackthorn. </small>
+        <p>$ 100</p>
+        <img onclick="wish(product3)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+       <button class="pro-but" onclick="addtocart(3)">
+         Add cart</button>
+      </div>
+    </div>
+
+    <div class="card1" >
+      <img src="https://fictionhorizon.com/wp-content/uploads/2022/03/Cedric-Diggorys-wand.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+      <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+        <h5 class="cardt" >Cedric Diggorys wand</h5>
+        <small class="cp">unicorn hair. </small>
+        <p>$ 100</p>
+        <img onclick="wish(product4)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+       <button class="pro-but" onclick="addtocart(4)">    Add cart</button>
+      </div>
+    </div>
+
+    <div class="card1" >
+      <img src="https://fictionhorizon.com/wp-content/uploads/2022/03/Dolores-Umbridges-wand.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+      <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+        <h5 class="cardt" >Dolores Umbridges wand</h5>
+        <small class="cp">Umbridges wand. </small>
+        <p>$ 100</p>
+        <img onclick="wish(product5)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+       <button class="pro-but" onclick="addtocart(5)">
+         Add cart</button>
+      </div>
+    </div>
+
+    <div class="card1" >
+      <img src="https://fictionhorizon.com/wp-content/uploads/2022/03/Draco-Malfoys-wand.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+      <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+        <h5 class="cardt" >Draco Malfoys wand</h5>
+        <small class="cp">hawthorn wood. </small>
+        <p>$ 100</p>
+        <img onclick="wish(product6)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+       <button class="pro-but" onclick="addtocart(6)">
+          Add cart</button>
+      </div>
+    </div>
+
+    <div class="card1" >
+      <img src="https://fictionhorizon.com/wp-content/uploads/2022/03/Fleur-Delacour-wand.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+      <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+        <h5 class="cardt" >Fleur Delacour wand</h5>
+        <small class="cp">Fleurs wand. </small>
+        <p>$ 100</p>
+        <img onclick="wish(product7)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+       <button class="pro-but" onclick="addtocart(7)">
+          Add cart</button>
+      </div>
+    </div>
+
+    <div class="card1" >
+      <img src="https://fictionhorizon.com/wp-content/uploads/2022/03/Gilderoy-Lockharts-wand.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+      <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+        <h5 class="cardt" >Gilderoy Lockharts wand</h5>
+        <small class="cp">Lockharts wand. </small>
+        <p>$ 100</p>
+        <img onclick="wish(product8)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+       <button class="pro-but" onclick="addtocart(8)">
+         Add cart</button>
+      </div>
+    </div>
+
+    </div>
+
+    <div style="color: white; padding-left: 20px; background: black;"><h1>Spell Books:</h1></div>
+
+    <div class="product">
+      
+      
+
+      
+      <div class="card1" >
+        <img onclick="fuc()" src="https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855652.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+        <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+          <h5 class="cardt" >Philosophers stone</h5>
+          <small class="cp">j.k Rowling </small>
+          <p>$ 100</p>
+          <img onclick="wish(product9)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+         <button class="pro-but" onclick="addtocart(9)">
+           Add cart</button>
+        </div>
+    </div>
+    <div class="card1" >
+      <img onclick="fuc()" src="https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855669.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+      <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+        <h5 class="cardt" >Chamber of Secrets</h5>
+        <small class="cp">j.k Rowling </small>
+        <p>$ 100</p>
+        <img onclick="wish(product10)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+       <button class="pro-but" onclick="addtocart(10)">
+          Add cart</button>
+      </div>
+  </div>
+
+  <div class="card1" >
+    <img onclick="fuc()" src="https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855676.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+    <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+      <h5 class="cardt" >Prisoner of Azkaban</h5>
+      <small class="cp">J.k Rowling </small>
+      <p>$ 100</p>
+      <img onclick="wish(product11)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+     <button class="pro-but" onclick="addtocart(11)">
+        Add cart</button>
+    </div>
+</div>
+
+<div class="card1" >
+  <img onclick="fuc()" src="https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855683.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+  <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+    <h5 class="cardt" >Goblet of Fire</h5>
+    <small class="cp">J.k Rowling  </small>
+    <p>$ 100</p>
+    <img onclick="wish(product12)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+   <button class="pro-but" onclick="addtocart(12)">
+     Add cart</button>
+  </div>
+</div>
+
+<div class="card1" >
+  <img onclick="fuc()" src="https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855690.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+  <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+    <h5 class="cardt" >Order of Pheonix</h5>
+    <small class="cp">J.k Rowling  </small>
+    <p>$ 100</p>
+    <img onclick="wish(product13)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+   <button class="pro-but" onclick="addtocart(13)">
+    Add cart</button>
+  </div>
+</div>
+
+    </div>
+
+    <div style="color: white; padding-left: 20px; background: black;"><h1>Pets:</h1></div>
+
+    <div class="product">
+      
+      
+
+      
+      <div class="card1" >
+        <img src="https://imageio.forbes.com/blogs-images/grrlscientist/files/2018/01/SnowyOwlWallpeper-1200x799.jpg?height=473&width=711&fit=bounds" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+        <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+          <h5 class="cardt" >Owl</h5>
+          <small class="cp">Harry had one pet - a snowy owl named Hedwig. </small>
+          <p>$ 100</p>
+          <img onclick="wish(product14)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+         <button class="pro-but" onclick="addtocart(14)">
+          Add cart</button>
+        </div>
+    </div>
+
+    <div class="card1" >
+      <img onclick="fuc()" src="https://www.everythingreptiles.com/ezoimgfmt/sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_750,h_469/https://www.everythingreptiles.com/wp-content/uploads/2020/08/Whites-Tree-Frog.jpg?ezimgfmt=rs:372x233/rscb1" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+      <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+        <h5 class="cardt" >Frog</h5>
+        <small class="cp">popularly known among Muggles as well as wizards and witches. </small>
+        <p>$ 100</p>
+        <img onclick="wish(product15)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+       <button class="pro-but" onclick="addtocart(15)">
+        Add cart</button>
+      </div>
+  </div>
+  <div class="card1" >
+    <img onclick="fuc()" src="https://www.corydonanimalhospital.ca/wp-content/uploads/sites/80/2019/02/shutterstock_536505532.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+    <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+      <h5 class="cardt" >Rat</h5>
+      <small class="cp">Ron weasley's Friend. </small>
+      <p>$ 100</p>
+      <img onclick="wish(product16)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+     <button class="pro-but" onclick="addtocart(16)">
+      Add cart</button>
+    </div>
+</div>
+<div class="card1" >
+  <img onclick="fuc()" src="https://cdn.sunlive.co.nz/images/sunlive/Loki-Cat.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+  <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+    <h5 class="cardt" >Cat</h5>
+    <small class="cp">This cat was mentioned in Lily Evans' letter. </small>
+    <p>$ 100</p>
+    <img onclick="wish(product17)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+   <button class="pro-but" onclick="addtocart(17)">
+    Add cart</button>
+  </div>
+</div>
+<div class="card1" >
+  <img onclick="fuc()" src="https://i.pinimg.com/originals/5f/bd/83/5fbd836a6486100997f00818c4b8e4b2.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+  <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+    <h5 class="cardt" >Spider</h5>
+    <small class="cp">Hagrid Named to this Spider as Magicus. </small>
+    <p>$ 100</p>
+    <img onclick="wish(product18)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+   <button class="pro-but" onclick="addtocart(18)">
+      Add cart</button>
+  </div>
+</div>
+<div class="card1" >
+  <img onclick="fuc()" src="https://static.wikia.nocookie.net/harrypotter/images/a/a3/Fluffy_HPCB.png/revision/latest?cb=20170204211603" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+  <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+    <h5 class="cardt" >Dog</h5>
+    <small class="cp">Three Headed Security. </small>
+    <p>$ 200</p>
+    <img onclick="wish(product19)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+   <button class="pro-but" onclick="addtocart(19)">
+    Add cart</button>
+  </div>
+</div>
+<div class="card1" >
+  <img onclick="fuc()" src="https://static.wikia.nocookie.net/harrypotter/images/9/92/Horse_Patronus.png/revision/latest?cb=20170109005249" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+  <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+    <h5 class="cardt" >Winged Horse</h5>
+    <small class="cp">Power ful Fandom Patranous. </small>
+    <p>$ 400</p>
+    <img onclick="wish(product20)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+   <button class="pro-but" onclick="addtocart(20)">
+    Add cart</button>
+  </div>
+</div>
+<div class="card1" >
+  <img onclick="fuc()" src="https://i.pinimg.com/736x/5d/9e/d9/5d9ed92d4e383a814933a21d2e36f2be.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+  <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+    <h5 class="cardt" >Griffon</h5>
+    <small class="cp">Potter Own's it from Hagrid. </small>
+    <p>$ 300</p>
+    <img onclick="wish(product21)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+   <button class="pro-but"  onclick="addtocart(21)">
+    Add cart</button>
+  </div>
+</div>
+<div class="card1">
+  <img onclick="fuc()" src="https://pm1.aminoapps.com/6015/3271745e48da1fc45a5809b9db9ce74b37cdf8df_hq.jpg" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+  <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+    <h5 class="cardt" >Phoenix  Bird</h5>
+    <small class="cp">Powerful phoenix-Dumbledores Pet. </small>
+    <p>$ 400</p>
+    <img onclick="wish(product22)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+   <button class="pro-but" onclick="addtocart(22)">
+     Add cart</button>
+  </div>
+</div>
+
+<div class="card1" >
+  <img onclick="fuc()" src="https://static.wikia.nocookie.net/harrypotter/images/5/51/Nagini_WU.png/revision/latest/scale-to-width-down/1000?cb=20230316190439&path-prefix=it" style="border-radius: 20px;" width="100%" height="180px" alt="...">
+  <div class="cardb" style="display: flex;flex-direction: column;align-items: center;padding: 10px;" >
+    <h5 class="cardt" >Nagini</h5>
+    <small class="cp">Lord voldemort's Horcrux </small>
+    <p>$ 400</p>
+    <img onclick="wish(product23)" src="https://cdn.pixabay.com/photo/2012/04/01/18/57/heart-24037_1280.png" alt="" height="20px" width="20px" style="margin-bottom: 10px;">
+   <button class="pro-but" onclick="addtocart(23)">
+   
+    Add cart</button>
+  </div>
+</div>
+    </div>
+
+
+
+    <!-- magic page -->
+    
+    <div id="magics" class="magic-page">
+      <h1 class="mh1" >Secret Spells</h1>
+      <div class="magic-page-in">
+        <div class="magi">
+        <sup style="width: 40px;"><img src="images\55.png" width="30px " height="30px" alt=""></sup>
+         <h1 class="mh2" id="out">Harry potter</h1>
+         <sup  style=" width: 70px;"><img src="images\56.png" width="30px " height="30px" alt=""></sup>
+        </div>
+        <div class="magi2">
+          <p >Harry: Alright oldie i'm going i'm going! Just let me have that piece of paper with my name on it first! Harry: You can now explain to me why you are trying to steal my name and impersonate me! Dumbledore: I wasn't!.....Ron Weasely: Harry We have to do  Something Because Voldemort is coming He already Hurts us So we want Some Special Weapon So we Need to find Godric Griffindor's Sword.</p>
+        </div>
+        <button onclick="speakRandomWord()"> Click ME</button>
+     </div>   
+    </div>
+<script>
+
+  let spell1='Lumos'
+  let spell2='Oculus Reparo'
+  let spell3='Expecto Patronum'
+  let spell4='Muffliato'
+  let spell5='Petrificus Totalus'
+  let spell6='Wingardium Leviosa'
+  let spell7='Riddikulus'
+  let spell8='Sectum Sempra'
+  let spell9='Imperio'
+  let spell10='Finite Incantatem'
+  let spell11='Alohomora'
+  let spell12='Avada Kedavra'
+  
+  const arr=[]
+  arr[0]=spell1
+  arr[1]=spell2
+  arr[2]=spell3
+  arr[3]=spell4
+  arr[4]=spell5
+  arr[5]=spell6
+function spell(){
+  let outer=arr[Math.floor(Math.random()*arr.length)]
+return outer
+}
+function speakRandomWord() {
+    const randomWord = spell();
+    // Create a SpeechSynthesisUtterance object
+    const utterance = new SpeechSynthesisUtterance(randomWord);
+    // Use the speech synthesis API to speak the word
+    window.speechSynthesis.speak(utterance);
+    document.getElementById('out').innerHTML=randomWord
+}
+</script>
+
+
+
+<div class="sec-end2">
+  <div>
+  <div class="sec-left2">
+    <div id="1" class="just1">
+      <img src="https://w0.peakpx.com/wallpaper/288/531/HD-wallpaper-harry-potter-7-harry-potter-he-deathly-hallows-magic.jpg" alt="">
+      <h1>Gryffindor</h1>
+      <p>Gryffindor was one of the four Houses of Hogwarts School of Witchcraft and Wizardry and was founded by Godric Gryffindor. Gryffindor instructed the Sorting Hat to choose students possessing characteristics he most valued, such as courage, chivalry, nerve and determination,[6] to be sorted into his house.
+
+        The emblematic animal was a lion, and its colours were scarlet and gold[2] and its house point hourglass was filled with rubies.[9][10] Sir Nicholas de Mimsy-Porpington, also known as "Nearly Headless Nick", was the House ghost.[5]
+        
+        Gryffindor corresponded roughly to the element of fire, and it was for this reason that the colours scarlet and gold were chosen to represent the house.[2] The colour of fire corresponded to that of a lion as well, with scarlet representing the mane and tail and gold representing the coat.
+        The Gryffindor house emphasised the traits of courage as well as "daring, nerve, and chivalry",[4][5] and thus its members were generally regarded as brave, though sometimes to the point of recklessness. Some Gryffindors had also been noted to be short-tempered.
+
+        Notably, Gryffindor house contributed many members to Dumbledore's Army and the Order of the Phoenix,[12] although this may have been because the main members made it a point not to associate with other houses.
+        
+        According to Phineas Nigellus Black, members of other houses, particularly Slytherin, sometimes felt that Gryffindors engaged in "pointless heroics". Another Slytherin, Severus Snape, considered many Gryffindors to be self-righteous and arrogant, with no regard for rules.</p>
+    </div>
+    <div id="2" class="just2">
+      <img src="https://wallpaper.dog/large/5514033.jpg" alt="">
+      <h1>Slytherin</h1>
+      <p>Slytherin was one of the four Houses at Hogwarts School of Witchcraft and Wizardry, founded by Salazar Slytherin.[1] In establishing the house, Salazar instructed the Sorting Hat to pick students who had a few particular characteristics he most valued. Those characteristics included cunning, resourcefulness, leadership, and ambition.
+
+        Many Slytherin students tended to clique together (often acquiring leaders) which further exemplified Slytherin's ambitious qualities. Examples of these included Draco Malfoy's gang, Merula Snyde's gang, Pansy Parkinson's gang and Tom Riddle's gang (which later became the Death Eaters).
+        
+        The founder highly valued and favoured pure-blood students and the Sorting Hat admitted that it could be a factor when being sorted.[1][20] Students of any blood status could be placed in the house. However, a Muggle-born student from that house was considered to be quite rare.[21]
+        
+        The emblematic animal of the house was a snake and the house's colours were green and silver. There were two notable heads of the house; Horace Slughorn took the role twice (first leaving in 1981 and then taking the role again from 1997 until leaving before 2016),[14] and Severus Snape.[15] The patron ghost of the house was the Bloody Baron.[8]
+        Slytherin corresponded roughly with the element of water due to serpents being commonly associated with the sea and lochs in western European mythology, as well as serpents being physically fluid and flexible animals.[5] Similarly, in Celtic mythology, water is seen as a portal to another world, leading some to believe that the element was chosen to symbolise a Slytherin's dream for a world in which their goals and ambitions had finally been achieved. </p>
+   
+    </div>
+    <div id="3" class="just3">
+      <img src="images\4072723.jpg" alt="">
+      <h1>Ravenclaw</h1>
+      <p>
+        Ravenclaw House prized learning, wisdom, wit, and intellect in its members.[6] Thus, many Ravenclaws tended to be academically motivated and talented students. They also prided themselves on being original in their ideas, and methods. It was not unusual to find Ravenclaw students practising especially different types of magic that other houses might shun.[7] Hermione Granger, an extremely intelligent witch and the top student in her year, was sorted into Gryffindor, though she admitted that the Sorting Hat had seriously considered placing her in Ravenclaw.[20]
+
+Often hard-working and diligent, as often was the case with intellectuals with a predisposition for academics, some of the pupils sorted under the blue-bronzed eagle were known to be inclined to dismiss certain social expectations for the sake of satisfying their own intellectual curiosity. Some of these eventually also ended up being not only accepted but even celebrated, in spite of being initially subjected to scorn for their various oddities. Luna Lovegood, for example, was one such student: eccentric to put it at its mildest, she was a Ravenclaw student who initially was bullied for her open defiance of conventionality, but ultimately became a celebrated wizarding naturalist and renowned for her participation in the legendary Battle of Hogwarts and past membership in Dumbledore's Army. Another example would be Professor Filius Flitwick, a half-goblin who might have faced scorn for his short stature earlier in life but went on to become a renowned Duelling Champion, and subsequently one of the finest and most knowledgable Charms Masters in the entirety of the wizarding world during his employment at Hogwarts School of Witchcraft and Wizardry. (The best, according to some of his students).
+      </p>
+    </div>
+    <div id="4" class="just4">
+       <img src="https://i.pinimg.com/originals/60/d6/d6/60d6d6d4622469716246550e3cc2079c.jpg" alt="">
+       <h1>Hufflepuff</h1>
+       <p>
+        Hufflepuff was one of the four Houses of Hogwarts School of Witchcraft and Wizardry.[15] Its founder was the medieval witch Helga Hufflepuff.[1] Hufflepuff was the most inclusive among the four houses, valuing hard work, dedication, patience, loyalty, and fair play rather than a particular aptitude in its members.[7][6]
+
+The emblematic animal was a badger,[3] and yellow and black were its house colours.[2] The Head of Hufflepuff was Pomona Sprout,[9] and the Fat Friar was the House's patron ghost.[6]
+
+Hufflepuff corresponded roughly to the element of earth,[4] and it was for that reason that the House colours were chosen: yellow represented wheat, while black was emblematic of soil.[2] The Hufflepuff point hourglass contained yellow diamonds.[16] Students sorted into Hufflepuff often demonstrated strong abilities in Herbology, owing to their correspondence to earth.
+Hufflepuffs were known to have a strong moral code, and a sense of right and wrong. Hufflepuffs were usually accepting of everyone. Students in Hufflepuff were known to value everyone and treat them as equal.[7]
+
+Hufflepuff appeared to have the least rivalry with the other houses, except in Quidditch, although the Triwizard Tournament did temporarily put a great deal of strain on the relationship between Gryffindor and Hufflepuff, due to unusual circumstances of the selection of both Gryffindor student Harry Potter and Hufflepuff student Cedric Diggory as champions.[17][9] This was mended by 1998, where a majority of Hufflepuffs rose to defend Harry from Pansy Parkinson and later helped to defend Hogwarts.
+ </p>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer -->
+    
+
+<div class="footers">
+  <div class="first-foot" >
+  <a class="navbar-brand" href="#">
+      <img src="images\harry-potter-logo-32533.png" alt="" width="250px" height="100px">
+  </a>
+    <li style="list-style-type: none;padding-left: 10px;" >The main story arc concerns Harry's conflict with Lord Voldemort, a dark wizard who intends to become immortal.</li>
+  </div>
+  <div class="sec-foot">
+          <table class="table text-center  table-borderless">
+              
+              <thead>
+                <tr>
+                  <th scope="col">Clan</th>
+                  <th scope="col">founder</th>
+                  <th scope="col">Signature</th>
+                  <th scope="col">Weapon</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Gryffidor</th>
+                  <td>Godric Gryffindor</td>
+                  <td>Lion</td>
+                  <td>Sword</td>
+                </tr>
+                <tr>
+                  <th scope="row">slytherin</th>
+                  <td>Salazar Slytherin</td>
+                  <td>Serpent</td>
+                  <td>Basiliskt</td>
+                </tr>
+                <tr>
+                  <th scope="row">RawenClaw</th>
+                  <td >Rowena Ravenclaw</td>
+                  <td>Eagle</td>
+                  <td>Rowena Crown</td>
+                </tr>
+                <tr>
+                  <th scope="row"> Hufflepuff</th>
+                  <td >Helga Hufflepuff</td>
+                  <td>Badger</td>
+                  <td>Hufflepuff's Cup</td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+  </div>
+</div>
+<div id="contactus" class="foot-last">
+  <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" width="60px" height="60px" alt="">
+  <img src="https://cdn.pixabay.com/photo/2015/05/17/10/51/facebook-770688_640.png" width="60px" height="60px" alt="">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png" width="60px" height="60px" alt="">
+  <img src="https://static-00.iconduck.com/assets.00/youtube-icon-512x512-874lspju.png" width="60px" height="60px" alt="">
+</div>
+
+
+
+
+
+       
+
+
+
+
+
+<script>
+
+
+   const products = [
+                  { id: 1, name: "Elder Wand", price: 100, imageUrl: "https://fictionhorizon.com/wp-content/uploads/2022/03/Elder-wand.jpg" },
+                  { id: 2, name: "Bellatrix Lestranges wand", price: 100, imageUrl: "https://fictionhorizon.com/wp-content/uploads/2022/03/Bellatrix-Lestranges-wand.jpg"},
+                  { id: 3, name: "Sir Cadogans wand", price: 100, imageUrl: "https://fictionhorizon.com/wp-content/uploads/2022/03/Sir-Cadogans-wand.jpg" },
+                  { id: 4, name: "Cedric Diggorys wand", price: 100, imageUrl: "https://fictionhorizon.com/wp-content/uploads/2022/03/Cedric-Diggorys-wand.jpg"},
+                  { id: 5, name: "Dolores Umbridges wand", price: 100, imageUrl: "https://fictionhorizon.com/wp-content/uploads/2022/03/Dolores-Umbridges-wand.jpg" },
+                  { id: 6, name: "Draco Malfoys wand", price: 100, imageUrl: "https://fictionhorizon.com/wp-content/uploads/2022/03/Draco-Malfoys-wand.jpg"},
+                  { id: 7, name: "Fleur Delacour wand", price: 100, imageUrl: "https://fictionhorizon.com/wp-content/uploads/2022/03/Fleur-Delacour-wand.jpg" },
+                  { id: 8, name: "Gilderoy Lockharts wand", price: 100, imageUrl: "https://fictionhorizon.com/wp-content/uploads/2022/03/Gilderoy-Lockharts-wand.jpg"},
+                  { id: 9, name: "Philosophers stone", price: 100, imageUrl: "https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855652.jpg" },
+                  { id: 10, name: "Chamber of Secrets", price: 100, imageUrl: "https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855669.jpg"},
+                  { id: 11, name: "Prisoner of Azkaban", price: 100, imageUrl: "https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855676.jpg" },
+                  { id: 12, name: "Goblet of Fire", price: 100, imageUrl: "https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855683.jpg"},
+                  { id: 13, name: "Order of Pheonix", price: 100, imageUrl: "https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855690.jpg" },
+                  { id: 14, name: "Owl", price: 100, imageUrl: "https://imageio.forbes.com/blogs-images/grrlscientist/files/2018/01/SnowyOwlWallpeper-1200x799.jpg?height=473&width=711&fit=bounds"},
+                  { id: 15, name: "Frog", price: 100, imageUrl: "https://www.everythingreptiles.com/ezoimgfmt/sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_750,h_469/https://www.everythingreptiles.com/wp-content/uploads/2020/08/Whites-Tree-Frog.jpg?ezimgfmt=rs:372x233/rscb1" },
+                  { id: 16, name: "Rat", price: 100, imageUrl: "https://www.corydonanimalhospital.ca/wp-content/uploads/sites/80/2019/02/shutterstock_536505532.jpg"},
+                  { id: 17, name: "Cat", price: 100, imageUrl: "https://cdn.sunlive.co.nz/images/sunlive/Loki-Cat.jpg" },
+                  { id: 18, name: "Spider", price: 100, imageUrl: "https://i.pinimg.com/originals/5f/bd/83/5fbd836a6486100997f00818c4b8e4b2.jpg"},
+                  { id: 19, name: "Dog", price: 200, imageUrl: "https://static.wikia.nocookie.net/harrypotter/images/a/a3/Fluffy_HPCB.png/revision/latest?cb=20170204211603" },
+                  { id: 20, name: "Winged Horse", price: 400, imageUrl: "https://static.wikia.nocookie.net/harrypotter/images/9/92/Horse_Patronus.png/revision/latest?cb=20170109005249"},
+                  { id: 21, name: "Griffon", price: 300, imageUrl: "https://i.pinimg.com/736x/5d/9e/d9/5d9ed92d4e383a814933a21d2e36f2be.jpg" },
+                  { id: 22, name: "Phoenix Bird", price: 400, imageUrl: "https://pm1.aminoapps.com/6015/3271745e48da1fc45a5809b9db9ce74b37cdf8df_hq.jpg"},
+                  { id: 23, name: "Nagini", price: 400, imageUrl: "https://static.wikia.nocookie.net/harrypotter/images/5/51/Nagini_WU.png/revision/latest/scale-to-width-down/1000?cb=20230316190439&path-prefix=it" }                  
+                ]
+
+                  let cart = [];
+                  let totalPrice = 0;
+                  let count=0
+                
+                  function updateCountDisplay() {document.getElementById('count').textContent = count;}
+                
+                  function addtocart(ProductId) {
+                      const product = products.find(item => item.id === ProductId);
+          
+                      if (product) {
+                          const existingItem = cart.find(item => item.id === ProductId);
+                          if (existingItem) {
+                              existingItem.count = Math.max(existingItem.count + 1, 0);
+                              existingItem.total = existingItem.count * existingItem.price;
+                          }
+                      
+                          else {
+                              const newItem = { 
+                                  ...product, count: 1, total: product.price };
+                              cart.push(newItem);  
+                          }
+                          updateCart();
+                          alert('Item Has Added in Cart')
+                          
+                          count++;
+                           updateCountDisplay();                      }
+                  }
+
+                   // Function to update the cart display and total price
+                   function updateCart() {
+                      const cartItemsElement = document.getElementById('cart-items');
+                      const totalElement = document.getElementById('total-price');
+          
+                      // Clear previous content
+                      cartItemsElement.innerHTML = '';
+          
+                      // Update cart items
+                      cart.forEach(item => {
+                          const cartItemContainer = document.createElement('div');
+                          cartItemContainer.className = 'cart-item';
+          
+                          // Create an image element
+                          const img = document.createElement('img');
+                          img.src = item.imageUrl;
+                          img.alt = item.name;
+                          img.style.width = '50px'; // Adjust the image size as needed
+                          cartItemContainer.appendChild(img);
+          
+                          // Display product name and total price
+                          const itemName = document.createElement('span');
+                          itemName.textContent = item.name;
+                          cartItemContainer.appendChild(itemName);
+          
+                          const priceAndQuantity = document.createElement('div');
+          
+                          // Create a button to decrease quantity
+                          const decreaseButton = document.createElement('button');
+                          decreaseButton.textContent = '-';
+                          decreaseButton.addEventListener('click', () => updateItemCount(item.id, item.count - 1));
+                          priceAndQuantity.appendChild(decreaseButton);
+          
+                          // Display the quantity
+                          const quantity = document.createElement('span');
+                          quantity.textContent = item.count;
+                          priceAndQuantity.appendChild(quantity);
+          
+                          // Create a button to increase quantity
+                          const increaseButton = document.createElement('button');
+                          increaseButton.textContent = '+';
+                          increaseButton.addEventListener('click', () => updateItemCount(item.id, item.count + 1));
+                          priceAndQuantity.appendChild(increaseButton);
+          
+                          cartItemContainer.appendChild(priceAndQuantity);
+          
+                          const totalPrice = document.createElement('span');
+                          totalPrice.textContent = `$${item.total.toFixed(2)}`;
+                          cartItemContainer.appendChild(totalPrice);
+          
+                          cartItemsElement.appendChild(cartItemContainer);
+                      });
+          
+                      // Update total price
+                      totalPrice = cart.reduce((total, item) => total + item.total, 0);
+                      totalElement.textContent = totalPrice.toFixed(2);
+                  }
+
+                  // Function to update the count of a specific item in the cart
+                  function updateItemCount(productId, newCount) {
+                      const itemToUpdate = cart.find(item => item.id === productId);
+          
+  
+                      if (itemToUpdate) {
+                          itemToUpdate.count = Math.max(newCount, 0);
+                          itemToUpdate.total = itemToUpdate.count * itemToUpdate.price;
+  
+                          if (itemToUpdate.count === 0) {
+                              cart = cart.filter(item => item.id !== productId);
+                          }
+                          updateCart();
+                     
+                  }
+              }
+
+
+              function clearCart() {
+                      cart = [];
+                      count = 0;
+                       updateCountDisplay();
+                    
+                      updateCart();
+                  }
+                  function proceed(){
+
+                   
+                    
+                      if(totalPrice>0){
+                          //location.href="suc"
+                          alert("success");
+                      }else{
+                        let response = "Your Cart Is Empty";
+                        alert(response);
+                      }
+                  }
+
+
+
+
+                  //wishlist
+
+
+
+
+                  let wishcount=0
+                
+                  function updatewishCountDisplay() {document.getElementById('wishcounts').textContent = wishcount;}
+
+                  const wishlist = [];
+        let TotalPrice = 0;
+
+        function wish(product) {
+            wishlist.push(product);
+            updateWishlist();
+
+
+            wishcount++;
+           updatewishCountDisplay();
+        }
+
+        function clearWishlist() {
+            wishlist.length = 0; // Clear the wishlist array
+            updateWishlist();
+            wishcount = 0;
+                       updatewishCountDisplay();
+        }
+
+        function updateWishlist() {
+            const wishlistContainer = document.getElementById('wishlist');
+            const totalElement = document.getElementById('total-price');
+
+            // Clear previous content
+            wishlistContainer.innerHTML = '';
+
+            // Update wishlist items
+            wishlist.forEach(item => {
+                const wishlistItem = document.createElement('div');
+                wishlistItem.className = 'wishlist-item';
+
+                // Product image
+                const img = document.createElement('img');
+                img.src = item.imageUrl;
+                img.alt = 'Product Image';
+                img.className = 'product-image';
+                wishlistItem.appendChild(img);
+
+                // Product details
+                const productDetails = document.createElement('div');
+                productDetails.className = 'product-details';
+
+                const quantity = document.createElement('p');
+                quantity.textContent = 'Quantity: ' + item.quantity;
+                productDetails.appendChild(quantity);
+
+                const price = document.createElement('p');
+                price.textContent = 'Price: $' + item.price.toFixed(2);
+                productDetails.appendChild(price);
+
+                const totalPrice = document.createElement('p');
+                TotalPrice.textContent = 'Total: $' + (item.quantity * item.price).toFixed(2);
+                productDetails.appendChild(totalPrice);
+
+                wishlistItem.appendChild(productDetails);
+
+                wishlistContainer.appendChild(wishlistItem);
+            });
+
+            // Update total price
+            TotalPrice = wishlist.reduce((total, item) => total + item.quantity * item.price, 0);
+            totalElement.textContent = TotalPrice.toFixed(2);
+        }
+
+        // Example products
+        const product1 = { imageUrl: 'https://fictionhorizon.com/wp-content/uploads/2022/03/Elder-wand.jpg', quantity: 1, price: 100 };
+        const product2 = { imageUrl: 'https://fictionhorizon.com/wp-content/uploads/2022/03/Bellatrix-Lestranges-wand.jpg',quantity: 1, price: 100 };
+        const product3= { imageUrl: 'https://fictionhorizon.com/wp-content/uploads/2022/03/Sir-Cadogans-wand.jpg',quantity: 1, price: 100 };
+        const product4 = { imageUrl: 'https://fictionhorizon.com/wp-content/uploads/2022/03/Cedric-Diggorys-wand.jpg',quantity: 1, price: 100 };
+        const product5 = { imageUrl: 'https://fictionhorizon.com/wp-content/uploads/2022/03/Dolores-Umbridges-wand.jpg',quantity: 1, price: 100 };
+        const product6 = { imageUrl: 'https://fictionhorizon.com/wp-content/uploads/2022/03/Draco-Malfoys-wand.jpg',quantity: 1, price: 100 };
+        const product7 = { imageUrl: 'https://fictionhorizon.com/wp-content/uploads/2022/03/Fleur-Delacour-wand.jpg',quantity: 1, price: 100 };
+        const product8 = { imageUrl: 'https://fictionhorizon.com/wp-content/uploads/2022/03/Gilderoy-Lockharts-wand.jpg',quantity: 1, price: 100 };
+        const product9 = { imageUrl: 'https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855652.jpg',quantity: 1, price: 100 };
+        const product10 = { imageUrl: 'https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855669.jpg',quantity: 1, price: 100 };
+        const product11 = { imageUrl: 'https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855676.jpg',quantity: 1, price: 100 };
+        const product12 = { imageUrl: 'https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855683.jpg',quantity: 1, price: 100 };
+        const product13 = { imageUrl: 'https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855690.jpg',quantity: 1, price: 100 };
+        const product14 = { imageUrl: 'https://imageio.forbes.com/blogs-images/grrlscientist/files/2018/01/SnowyOwlWallpeper-1200x799.jpg?height=473&width=711&fit=bounds',quantity: 1, price: 100 };
+        const product15 = { imageUrl: 'https://www.everythingreptiles.com/ezoimgfmt/sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_750,h_469/https://www.everythingreptiles.com/wp-content/uploads/2020/08/Whites-Tree-Frog.jpg?ezimgfmt=rs:372x233/rscb1',quantity: 1, price: 100 };
+        const product16 = { imageUrl: 'https://www.corydonanimalhospital.ca/wp-content/uploads/sites/80/2019/02/shutterstock_536505532.jpg',quantity: 1, price: 100 };
+        const product17 = { imageUrl: 'https://cdn.sunlive.co.nz/images/sunlive/Loki-Cat.jpg',quantity: 1, price: 100 };
+        const product18 = { imageUrl: 'https://i.pinimg.com/originals/5f/bd/83/5fbd836a6486100997f00818c4b8e4b2.jpg',quantity: 1, price: 100 };
+        const product19 = { imageUrl: 'https://static.wikia.nocookie.net/harrypotter/images/a/a3/Fluffy_HPCB.png/revision/latest?cb=20170204211603',quantity: 1, price: 200 };
+        const product20 = { imageUrl: 'https://static.wikia.nocookie.net/harrypotter/images/9/92/Horse_Patronus.png/revision/latest?cb=20170109005249',quantity: 1, price: 400 };
+        const product21 = { imageUrl: 'https://i.pinimg.com/736x/5d/9e/d9/5d9ed92d4e383a814933a21d2e36f2be.jpg',quantity: 1, price: 300 };
+        const product22 = { imageUrl: 'https://pm1.aminoapps.com/6015/3271745e48da1fc45a5809b9db9ce74b37cdf8df_hq.jpg',quantity: 1, price: 400 };
+        const product23 = { imageUrl: 'https://static.wikia.nocookie.net/harrypotter/images/5/51/Nagini_WU.png/revision/latest/scale-to-width-down/1000?cb=20230316190439&path-prefix=it',quantity: 1, price: 400 };
+
+
+        // Add products to the wishlist                
+    
+</script>
+<audio id="click-music">
+  <!-- Provide the path to your audio file -->
+  <source src="images\John-Wick-Bgm.mp3" type="audio/mp3" type="audio/mp3">
+  Your browser does not support the audio tag.
+</audio>
+
+<script>
+  const clickMusic = document.getElementById('click-music');
+
+  // Function to play music
+  function playMusic() {
+      clickMusic.play().catch(error => {
+          // Autoplay was prevented, you can handle this case
+          console.error('Autoplay was prevented:', error);
+      });
+  }
+
+  // Attach the playMusic function to the click event
+  document.addEventListener('click', playMusic);
+</script>
+
+
+
+        
+    
+</body>
+</html>
